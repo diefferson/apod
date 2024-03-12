@@ -11,12 +11,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.2
+  dio: ^5.4.1
+  intl: ^0.18.1
+  rxdart: ^0.27.7
+  stark: ^4.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
+  build_runner: ^2.4.8
+  mockito: ^5.4.4
 
 flutter:
   uses-material-design: true
