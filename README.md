@@ -4,13 +4,37 @@ NASA Astronomy Picture of the Day retrieval
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Create configs files on `assets/configs` folder with the following content:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```json
+{
+  "api_key": "apikey value",
+  "base_url": "base url value"
+}
+```
+
+We have 2 environments: `dev` and `prod`, so you can create 2 files with the following names:
+
+ - `environment.json`
+ - `environment_dev.json`
+
+### Running the app
+
+To run the you need to choose correct main file to run:
+
+ - `main.dart` for prod
+ - `main_dev.dart` for dev
+
+example of command to run the app:
+
+```bash
+## Prod
+flutter run --flavor prod -t lib/main.dart
+
+## dev
+flutter run --flavor dev -t lib/main_dev.dart
+
+```

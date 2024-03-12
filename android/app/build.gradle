@@ -58,6 +58,24 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "environment"
+    productFlavors {
+        prod {
+            dimension "environment"
+            applicationId "com.example.apod"
+            resValue "string", "flutter_entry", "mainProd"
+            resValue "string", "app_name", "Apod"
+        }
+        dev {
+            dimension "environment"
+            applicationId "com.example.apod.debv"
+            resValue "string", "flutter_entry", "mainDev"
+            resValue "string", "app_name", "Apod Dev"
+        }
+    }
+
+
 }
 
 flutter {
