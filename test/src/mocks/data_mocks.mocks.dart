@@ -3,11 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:apod/src/data/network/app_auth_interceptor.dart' as _i3;
-import 'package:apod/src/data/network/app_cache_interceptor.dart' as _i6;
-import 'package:dio/dio.dart' as _i5;
+import 'package:apod/src/data/network/app_auth_interceptor.dart' as _i4;
+import 'package:apod/src/data/network/app_cache_interceptor.dart' as _i7;
+import 'package:apod/src/data/network/dio_client.dart' as _i9;
+import 'package:apod/src/data/network/network_error_handler.dart' as _i8;
+import 'package:apod/src/domain/exception/apod_exception.dart' as _i3;
+import 'package:dio/dio.dart' as _i6;
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -34,15 +37,25 @@ class _FakeCacheOptions_0 extends _i1.SmartFake implements _i2.CacheOptions {
         );
 }
 
+class _FakeApodException_1 extends _i1.SmartFake implements _i3.ApodException {
+  _FakeApodException_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [AppAuthInterceptor].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAppAuthInterceptor extends _i1.Mock
-    implements _i3.AppAuthInterceptor {
+    implements _i4.AppAuthInterceptor {
   @override
-  _i4.Future<dynamic> onRequest(
-    _i5.RequestOptions? options,
-    _i5.RequestInterceptorHandler? handler,
+  _i5.Future<dynamic> onRequest(
+    _i6.RequestOptions? options,
+    _i6.RequestInterceptorHandler? handler,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -52,14 +65,14 @@ class MockAppAuthInterceptor extends _i1.Mock
             handler,
           ],
         ),
-        returnValue: _i4.Future<dynamic>.value(),
-        returnValueForMissingStub: _i4.Future<dynamic>.value(),
-      ) as _i4.Future<dynamic>);
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
 
   @override
   void onResponse(
-    _i5.Response<dynamic>? response,
-    _i5.ResponseInterceptorHandler? handler,
+    _i6.Response<dynamic>? response,
+    _i6.ResponseInterceptorHandler? handler,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -74,8 +87,8 @@ class MockAppAuthInterceptor extends _i1.Mock
 
   @override
   void onError(
-    _i5.DioException? err,
-    _i5.ErrorInterceptorHandler? handler,
+    _i6.DioException? err,
+    _i6.ErrorInterceptorHandler? handler,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -93,7 +106,7 @@ class MockAppAuthInterceptor extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAppCacheInterceptor extends _i1.Mock
-    implements _i6.AppCacheInterceptor {
+    implements _i7.AppCacheInterceptor {
   @override
   _i2.CacheOptions get options => (super.noSuchMethod(
         Invocation.getter(#options),
@@ -109,8 +122,8 @@ class MockAppCacheInterceptor extends _i1.Mock
 
   @override
   void onResponse(
-    _i5.Response<dynamic>? response,
-    _i5.ResponseInterceptorHandler? handler,
+    _i6.Response<dynamic>? response,
+    _i6.ResponseInterceptorHandler? handler,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -125,8 +138,8 @@ class MockAppCacheInterceptor extends _i1.Mock
 
   @override
   void onRequest(
-    _i5.RequestOptions? options,
-    _i5.RequestInterceptorHandler? handler,
+    _i6.RequestOptions? options,
+    _i6.RequestInterceptorHandler? handler,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -141,8 +154,8 @@ class MockAppCacheInterceptor extends _i1.Mock
 
   @override
   void onError(
-    _i5.DioException? err,
-    _i5.ErrorInterceptorHandler? handler,
+    _i6.DioException? err,
+    _i6.ErrorInterceptorHandler? handler,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -155,3 +168,36 @@ class MockAppCacheInterceptor extends _i1.Mock
         returnValueForMissingStub: null,
       );
 }
+
+/// A class which mocks [NetworkErrorHandler].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNetworkErrorHandler extends _i1.Mock
+    implements _i8.NetworkErrorHandler {
+  @override
+  _i3.ApodException handle(dynamic exception) => (super.noSuchMethod(
+        Invocation.method(
+          #handle,
+          [exception],
+        ),
+        returnValue: _FakeApodException_1(
+          this,
+          Invocation.method(
+            #handle,
+            [exception],
+          ),
+        ),
+        returnValueForMissingStub: _FakeApodException_1(
+          this,
+          Invocation.method(
+            #handle,
+            [exception],
+          ),
+        ),
+      ) as _i3.ApodException);
+}
+
+/// A class which mocks [DioClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDioClient extends _i1.Mock implements _i9.DioClient {}
