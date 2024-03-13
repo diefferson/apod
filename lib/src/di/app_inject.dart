@@ -1,5 +1,7 @@
 import 'package:apod/src/app/environment.dart';
 import 'package:apod/src/data/network/dio_client.dart';
+import 'package:apod/src/data/network/network_error_handler.dart';
+import 'package:apod/src/domain/exception/error_handler.dart';
 import 'package:stark/stark.dart';
 
 class AppInject {
@@ -19,6 +21,7 @@ class AppInject {
         single((i) => environment),
         single((i) => DioClient.getCacheOptions(cachePath)),
         single((i) => DioClient.getClient(environment: environment, cachePath:cachePath)),
+        single<ErrorHandler>((i) => NetworkErrorHandler()),
   };
 
   Set<Bind> domainBinds() => <Bind>{};
