@@ -2318,12 +2318,18 @@ class MockDio extends _i1.Mock implements _i5.Dio {
 /// See the documentation for Mockito's code generation for more information.
 class MockApodApi extends _i1.Mock implements _i12.ApodApi {
   @override
-  _i7.Future<List<_i13.ApodModel>> getApodList({required int? count}) =>
+  _i7.Future<List<_i13.ApodModel>> getApodList({
+    required DateTime? startDate,
+    required DateTime? endDate,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #getApodList,
           [],
-          {#count: count},
+          {
+            #startDate: startDate,
+            #endDate: endDate,
+          },
         ),
         returnValue: _i7.Future<List<_i13.ApodModel>>.value(<_i13.ApodModel>[]),
         returnValueForMissingStub:
@@ -2336,12 +2342,18 @@ class MockApodApi extends _i1.Mock implements _i12.ApodApi {
 /// See the documentation for Mockito's code generation for more information.
 class MockApodRepository extends _i1.Mock implements _i14.ApodRepository {
   @override
-  _i7.Future<List<_i13.ApodModel>> getApodList({required int? count}) =>
+  _i7.Future<List<_i13.ApodModel>> getApodList({
+    required DateTime? startDate,
+    required DateTime? endDate,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #getApodList,
           [],
-          {#count: count},
+          {
+            #startDate: startDate,
+            #endDate: endDate,
+          },
         ),
         returnValue: _i7.Future<List<_i13.ApodModel>>.value(<_i13.ApodModel>[]),
         returnValueForMissingStub:

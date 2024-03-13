@@ -6,22 +6,24 @@ import 'package:apod/src/domain/model/apod_model.dart';
 
 import '../../mocks/data_mocks.mocks.dart';
 
-
 void main() {
   group('ApodApi', () {
     test('should call get with correct path and query parameters when getApodList is called', () async {
       final dio = MockDio();
       final apodApi = ApodApi(dio);
-      final count = 10;
+      final startDate = DateTime(2022, 01, 01);
+      final endDate = DateTime(2022, 01, 10);
 
       when(dio.get(
         '/planetary/apod',
         queryParameters: {
-          'count': count,
+          'start_date': startDate.toIso8601String(),
+          'end_date': endDate.toIso8601String(),
+          'thumbs': true,
         },
       )).thenAnswer((_) async => Response(
         data: List.generate(
-          count,
+          10,
               (index) => {
             'date': '2022-01-01',
             'explanation': 'Test explanation',
@@ -33,16 +35,18 @@ void main() {
         requestOptions: RequestOptions(path: '/planetary/apod'),
       ));
 
-      final result = await apodApi.getApodList(count: count);
+      final result = await apodApi.getApodList(startDate: startDate, endDate: endDate);
 
       verify(dio.get(
         '/planetary/apod',
         queryParameters: {
-          'count': count,
+          'start_date': startDate.toIso8601String(),
+          'end_date': endDate.toIso8601String(),
+          'thumbs': true,
         },
       )).called(1);
       expect(result, isA<List<ApodModel>>());
-      expect(result.length, equals(count));
+      expect(result.length, equals(10));
     });
   });
 }

@@ -11,10 +11,11 @@ void main() {
     test('should call getApodList with correct count when getApodList is called', () async {
       final api = MockApodApi();
       final repository = ApodRepository(api);
-      final count = 10;
+      final startDate = DateTime(2022, 01, 01);
+      final endDate = DateTime(2022, 01, 10);
 
-      when(api.getApodList(count: count)).thenAnswer((_) async => List.generate(
-        count,
+      when(api.getApodList(startDate: startDate, endDate: endDate)).thenAnswer((_) async => List.generate(
+        3,
             (index) => ApodModel(
           date: DateTime(2022,01,01),
           explanation: 'Test explanation',
@@ -24,11 +25,11 @@ void main() {
         ),
       ));
 
-      final result = await repository.getApodList(count: count);
+      final result = await repository.getApodList(startDate: startDate, endDate: endDate);
 
-      verify(api.getApodList(count: count)).called(1);
+      verify(api.getApodList(startDate: startDate, endDate: endDate)).called(1);
       expect(result, isA<List<ApodModel>>());
-      expect(result.length, equals(count));
+      expect(result.length, equals(3));
     });
   });
 }

@@ -6,7 +6,7 @@ class ApodRepository {
 
   final ApodApi _api;
 
-  Future<List<ApodModel>> getApodList({required int count}) async {
-    return _api.getApodList(count: count);
+  Future<List<ApodModel>> getApodList({required DateTime startDate,required DateTime endDate}) async {
+    return _api.getApodList(startDate: startDate, endDate: endDate);
   }
 }
