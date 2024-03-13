@@ -81,6 +81,26 @@ class _FakeRequestOptions_4 extends _i1.SmartFake
         );
 }
 
+class _FakeHeaders_5 extends _i1.SmartFake implements _i5.Headers {
+  _FakeHeaders_5(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeOptions_6 extends _i1.SmartFake implements _i5.Options {
+  _FakeOptions_6(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [AppAuthInterceptor].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -285,6 +305,69 @@ class MockRequestInterceptorHandler extends _i1.Mock
             response,
             callFollowingResponseInterceptor,
           ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void reject(
+    _i5.DioException? error, [
+    bool? callFollowingErrorInterceptor = false,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #reject,
+          [
+            error,
+            callFollowingErrorInterceptor,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [ResponseInterceptorHandler].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResponseInterceptorHandler extends _i1.Mock
+    implements _i5.ResponseInterceptorHandler {
+  @override
+  _i7.Future<_i4.InterceptorState<dynamic>> get future => (super.noSuchMethod(
+        Invocation.getter(#future),
+        returnValue: _i7.Future<_i4.InterceptorState<dynamic>>.value(
+            _FakeInterceptorState_2<dynamic>(
+          this,
+          Invocation.getter(#future),
+        )),
+        returnValueForMissingStub:
+            _i7.Future<_i4.InterceptorState<dynamic>>.value(
+                _FakeInterceptorState_2<dynamic>(
+          this,
+          Invocation.getter(#future),
+        )),
+      ) as _i7.Future<_i4.InterceptorState<dynamic>>);
+
+  @override
+  bool get isCompleted => (super.noSuchMethod(
+        Invocation.getter(#isCompleted),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  void next(_i5.Response<dynamic>? response) => super.noSuchMethod(
+        Invocation.method(
+          #next,
+          [response],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void resolve(_i5.Response<dynamic>? response) => super.noSuchMethod(
+        Invocation.method(
+          #resolve,
+          [response],
         ),
         returnValueForMissingStub: null,
       );
@@ -801,4 +884,404 @@ class MockRequestOptions extends _i1.Mock implements _i5.RequestOptions {
           ),
         ),
       ) as _i5.RequestOptions);
+}
+
+/// A class which mocks [Response].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResponse<T> extends _i1.Mock implements _i5.Response<T> {
+  @override
+  set data(T? _data) => super.noSuchMethod(
+        Invocation.setter(
+          #data,
+          _data,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.RequestOptions get requestOptions => (super.noSuchMethod(
+        Invocation.getter(#requestOptions),
+        returnValue: _FakeRequestOptions_4(
+          this,
+          Invocation.getter(#requestOptions),
+        ),
+        returnValueForMissingStub: _FakeRequestOptions_4(
+          this,
+          Invocation.getter(#requestOptions),
+        ),
+      ) as _i5.RequestOptions);
+
+  @override
+  set requestOptions(_i5.RequestOptions? _requestOptions) => super.noSuchMethod(
+        Invocation.setter(
+          #requestOptions,
+          _requestOptions,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set statusCode(int? _statusCode) => super.noSuchMethod(
+        Invocation.setter(
+          #statusCode,
+          _statusCode,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set statusMessage(String? _statusMessage) => super.noSuchMethod(
+        Invocation.setter(
+          #statusMessage,
+          _statusMessage,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Headers get headers => (super.noSuchMethod(
+        Invocation.getter(#headers),
+        returnValue: _FakeHeaders_5(
+          this,
+          Invocation.getter(#headers),
+        ),
+        returnValueForMissingStub: _FakeHeaders_5(
+          this,
+          Invocation.getter(#headers),
+        ),
+      ) as _i5.Headers);
+
+  @override
+  set headers(_i5.Headers? _headers) => super.noSuchMethod(
+        Invocation.setter(
+          #headers,
+          _headers,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool get isRedirect => (super.noSuchMethod(
+        Invocation.getter(#isRedirect),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  set isRedirect(bool? _isRedirect) => super.noSuchMethod(
+        Invocation.setter(
+          #isRedirect,
+          _isRedirect,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  List<_i5.RedirectRecord> get redirects => (super.noSuchMethod(
+        Invocation.getter(#redirects),
+        returnValue: <_i5.RedirectRecord>[],
+        returnValueForMissingStub: <_i5.RedirectRecord>[],
+      ) as List<_i5.RedirectRecord>);
+
+  @override
+  set redirects(List<_i5.RedirectRecord>? _redirects) => super.noSuchMethod(
+        Invocation.setter(
+          #redirects,
+          _redirects,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Map<String, dynamic> get extra => (super.noSuchMethod(
+        Invocation.getter(#extra),
+        returnValue: <String, dynamic>{},
+        returnValueForMissingStub: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+
+  @override
+  set extra(Map<String, dynamic>? _extra) => super.noSuchMethod(
+        Invocation.setter(
+          #extra,
+          _extra,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  Uri get realUri => (super.noSuchMethod(
+        Invocation.getter(#realUri),
+        returnValue: _FakeUri_3(
+          this,
+          Invocation.getter(#realUri),
+        ),
+        returnValueForMissingStub: _FakeUri_3(
+          this,
+          Invocation.getter(#realUri),
+        ),
+      ) as Uri);
+}
+
+/// A class which mocks [CacheOptions].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCacheOptions extends _i1.Mock implements _i2.CacheOptions {
+  @override
+  _i2.CachePolicy get policy => (super.noSuchMethod(
+        Invocation.getter(#policy),
+        returnValue: _i2.CachePolicy.forceCache,
+        returnValueForMissingStub: _i2.CachePolicy.forceCache,
+      ) as _i2.CachePolicy);
+
+  @override
+  _i2.CacheKeyBuilder get keyBuilder => (super.noSuchMethod(
+        Invocation.getter(#keyBuilder),
+        returnValue: (_i5.RequestOptions request) => _i11.dummyValue<String>(
+          this,
+          Invocation.getter(#keyBuilder),
+        ),
+        returnValueForMissingStub: (_i5.RequestOptions request) =>
+            _i11.dummyValue<String>(
+          this,
+          Invocation.getter(#keyBuilder),
+        ),
+      ) as _i2.CacheKeyBuilder);
+
+  @override
+  _i2.CachePriority get priority => (super.noSuchMethod(
+        Invocation.getter(#priority),
+        returnValue: _i2.CachePriority.low,
+        returnValueForMissingStub: _i2.CachePriority.low,
+      ) as _i2.CachePriority);
+
+  @override
+  bool get allowPostMethod => (super.noSuchMethod(
+        Invocation.getter(#allowPostMethod),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  Map<String, dynamic> toExtra() => (super.noSuchMethod(
+        Invocation.method(
+          #toExtra,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+        returnValueForMissingStub: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+
+  @override
+  _i5.Options toOptions() => (super.noSuchMethod(
+        Invocation.method(
+          #toOptions,
+          [],
+        ),
+        returnValue: _FakeOptions_6(
+          this,
+          Invocation.method(
+            #toOptions,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeOptions_6(
+          this,
+          Invocation.method(
+            #toOptions,
+            [],
+          ),
+        ),
+      ) as _i5.Options);
+
+  @override
+  _i2.CacheOptions copyWith({
+    _i2.CachePolicy? policy,
+    _i2.Nullable<List<int>>? hitCacheOnErrorExcept,
+    _i2.CacheKeyBuilder? keyBuilder,
+    _i2.Nullable<Duration>? maxStale,
+    _i2.CachePriority? priority,
+    _i2.CacheStore? store,
+    _i2.Nullable<_i2.CacheCipher>? cipher,
+    bool? allowPostMethod,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #copyWith,
+          [],
+          {
+            #policy: policy,
+            #hitCacheOnErrorExcept: hitCacheOnErrorExcept,
+            #keyBuilder: keyBuilder,
+            #maxStale: maxStale,
+            #priority: priority,
+            #store: store,
+            #cipher: cipher,
+            #allowPostMethod: allowPostMethod,
+          },
+        ),
+        returnValue: _FakeCacheOptions_0(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
+              #policy: policy,
+              #hitCacheOnErrorExcept: hitCacheOnErrorExcept,
+              #keyBuilder: keyBuilder,
+              #maxStale: maxStale,
+              #priority: priority,
+              #store: store,
+              #cipher: cipher,
+              #allowPostMethod: allowPostMethod,
+            },
+          ),
+        ),
+        returnValueForMissingStub: _FakeCacheOptions_0(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
+              #policy: policy,
+              #hitCacheOnErrorExcept: hitCacheOnErrorExcept,
+              #keyBuilder: keyBuilder,
+              #maxStale: maxStale,
+              #priority: priority,
+              #store: store,
+              #cipher: cipher,
+              #allowPostMethod: allowPostMethod,
+            },
+          ),
+        ),
+      ) as _i2.CacheOptions);
+}
+
+/// A class which mocks [CacheStore].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCacheStore extends _i1.Mock implements _i2.CacheStore {
+  @override
+  _i7.Future<bool> exists(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #exists,
+          [key],
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+        returnValueForMissingStub: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+
+  @override
+  _i7.Future<_i2.CacheResponse?> get(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #get,
+          [key],
+        ),
+        returnValue: _i7.Future<_i2.CacheResponse?>.value(),
+        returnValueForMissingStub: _i7.Future<_i2.CacheResponse?>.value(),
+      ) as _i7.Future<_i2.CacheResponse?>);
+
+  @override
+  _i7.Future<List<_i2.CacheResponse>> getFromPath(
+    RegExp? pathPattern, {
+    Map<String, String?>? queryParams,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getFromPath,
+          [pathPattern],
+          {#queryParams: queryParams},
+        ),
+        returnValue:
+            _i7.Future<List<_i2.CacheResponse>>.value(<_i2.CacheResponse>[]),
+        returnValueForMissingStub:
+            _i7.Future<List<_i2.CacheResponse>>.value(<_i2.CacheResponse>[]),
+      ) as _i7.Future<List<_i2.CacheResponse>>);
+
+  @override
+  _i7.Future<void> set(_i2.CacheResponse? response) => (super.noSuchMethod(
+        Invocation.method(
+          #set,
+          [response],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> delete(
+    String? key, {
+    bool? staleOnly = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [key],
+          {#staleOnly: staleOnly},
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> deleteFromPath(
+    RegExp? pathPattern, {
+    Map<String, String?>? queryParams,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteFromPath,
+          [pathPattern],
+          {#queryParams: queryParams},
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> clean({
+    _i2.CachePriority? priorityOrBelow = _i2.CachePriority.high,
+    bool? staleOnly = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #clean,
+          [],
+          {
+            #priorityOrBelow: priorityOrBelow,
+            #staleOnly: staleOnly,
+          },
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  _i7.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  bool pathExists(
+    String? url,
+    RegExp? pathPattern, {
+    Map<String, String?>? queryParams,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #pathExists,
+          [
+            url,
+            pathPattern,
+          ],
+          {#queryParams: queryParams},
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 }
