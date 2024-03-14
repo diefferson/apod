@@ -70,7 +70,7 @@ void main() {
 
       LoadingService.dismissLoading();
 
-      await tester.pump(Duration(seconds: 1));
+      await tester.pump(const Duration(seconds: 1));
 
       expect(find.byType(CircularProgressIndicator), findsNothing);
     });

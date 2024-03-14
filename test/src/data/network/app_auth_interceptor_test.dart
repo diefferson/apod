@@ -8,7 +8,7 @@ void main() {
   group('AppAuthInterceptor', () {
     test('should add apiKey to queryParameters when onRequest is called',
         () async {
-      final apiKey = 'test_api_key';
+      const apiKey = 'test_api_key';
       final appAuthInterceptor = AppAuthInterceptor(apiKey);
       final requestOptions = MockRequestOptions();
       final handler = MockRequestInterceptorHandler();

@@ -34,8 +34,8 @@ void main() {
       expect(dio.options.baseUrl, equals('https://test.com'));
       expect(dio.options.followRedirects, isFalse);
       expect(dio.options.receiveDataWhenStatusError, isTrue);
-      expect(dio.options.connectTimeout, equals(Duration(seconds: 240)));
-      expect(dio.options.receiveTimeout, equals(Duration(seconds: 240)));
+      expect(dio.options.connectTimeout, equals(const Duration(seconds: 240)));
+      expect(dio.options.receiveTimeout, equals(const Duration(seconds: 240)));
     });
 
     test('should create CacheOptions with correct options', () {
@@ -43,7 +43,7 @@ void main() {
 
       expect(cacheOptions.policy, equals(CachePolicy.forceCache));
       expect(cacheOptions.hitCacheOnErrorExcept, equals([401, 403, 500]));
-      expect(cacheOptions.maxStale, equals(Duration(days: 2)));
+      expect(cacheOptions.maxStale, equals(const Duration(days: 2)));
       expect(cacheOptions.priority, equals(CachePriority.normal));
       expect(cacheOptions.allowPostMethod, isFalse);
     });
