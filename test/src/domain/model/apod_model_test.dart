@@ -90,5 +90,30 @@ void main() {
       expect(apod.title, equals('title'));
       expect(apod.url, equals('url'));
     });
+
+    test('ApodModel should use thumbnail_url for url and hdurl if it exists', () async {
+      final date = DateTime.now();
+      final json = {
+        'date': date.toDateString(),
+        'explanation': 'explanation',
+        'copyright': 'copyright',
+        'thumbnail_url': 'thumbnail_url',
+        'url': 'url',
+        'media_type': 'mediaType',
+        'service_version': 'serviceVersion',
+        'title': 'title',
+      };
+      final apod = ApodModel.fromJson(json);
+
+      expect(apod.date.toDateString(),equals( date.toDateString()));
+      expect(apod.explanation, equals('explanation'));
+      expect(apod.copyright, equals('copyright'));
+      expect(apod.hdurl, equals('thumbnail_url'));
+      expect(apod.mediaType, equals('mediaType'));
+      expect(apod.serviceVersion, equals('serviceVersion'));
+      expect(apod.title, equals('title'));
+      expect(apod.url, equals('thumbnail_url'));
+    });
+
   });
 }
