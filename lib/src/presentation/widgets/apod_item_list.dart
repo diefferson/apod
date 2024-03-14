@@ -4,27 +4,31 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ApodItemList extends StatelessWidget {
-  const ApodItemList({super.key, required this.item});
+  const ApodItemList({super.key, required this.item, required this.onTap});
 
   final ApodModel item;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 16),
-      decoration: BoxDecoration(
-          border: Border(
-        top: BorderSide(
-          color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(top: 16),
+        decoration: BoxDecoration(
+            border: Border(
+          top: BorderSide(
+            color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.1),
+          ),
+        )),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _header(context),
+            _image(),
+            _details(context),
+          ],
         ),
-      )),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _header(context),
-          _image(),
-          _details(context),
-        ],
       ),
     );
   }
@@ -34,10 +38,13 @@ class ApodItemList extends StatelessWidget {
       constraints: const BoxConstraints(
         minHeight: 200,
       ),
-      child: CachedNetworkImage(
-        imageUrl:item.url,
-        width: double.infinity,
-        fit: BoxFit.fitWidth,
+      child: Hero(
+        tag: item.url,
+        child: CachedNetworkImage(
+          imageUrl:item.hdurl,
+          width: double.infinity,
+          fit: BoxFit.fitWidth,
+        ),
       ),
     );
   }
@@ -75,7 +82,7 @@ class ApodItemList extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              item.title,
+              item.copyright,
               style: Theme.of(context).textTheme.titleSmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
