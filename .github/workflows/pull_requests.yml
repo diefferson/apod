@@ -1,0 +1,40 @@
+name: PR Analysis
+
+on:
+  workflow_dispatch:
+  issue_comment:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.8'
+          channel: stable
+      - name: Flutter pub get
+        run: flutter pub get
+      - name: dart format
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: flutter analyze
+        run: "flutter analyze ."
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.8'
+          channel: stable
+      - name: Install coverage tools
+        run: dart pub global activate coverage
+      - name: Flutter pub get
+        run: flutter pub get
+      - name: flutter test
+        run: "flutter test . --coverage"
+      - name: format coverage
+        run: "format_coverage --lcov --in=coverage --out=coverage.lcov --report-on=lib"
+      - uses: codecov/codecov-action@v2
+        with:
+          files: coverage.lcov
