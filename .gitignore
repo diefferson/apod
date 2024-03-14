@@ -42,5 +42,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/assets/configs/
+/assets/configs/environment.json
+/assets/configs/environment_dev.json
 /test_cache_path/
