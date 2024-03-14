@@ -13,13 +13,20 @@ NASA Astronomy Picture of the Day retrieval
  - Caching data to work offline
 
 ## Architecture and Libraries
- - Project architecture: This project was made with a `Clean Architecture` using some layers to divide the project by responsibilities;
- - State management: For the state management I used the BLOC concept but with an MVP architecture;
- - Dependency Injection: I have made dependency injection with [Stark](https://pub.dev/packages/stark);
- - Navigation: I have used flutter base Navigation with a `Static Navigator Method`, this is a design pattern where the navigation logic is encapsulated within the page class itself, making the code cleaner and the navigation easier to manage.
+ - **Project architecture**: This project was made with a `Clean Architecture` using some layers to divide the project by responsibilities;
+  <img width="222" alt="Captura de Tela 2024-03-14 às 17 42 40" src="https://github.com/diefferson/apod/assets/13908165/70b740db-c645-423c-b32b-599e506b8980">
+
+ - **State management**: For the state management I used the BLOC concept but with an MVP architecture;
+ - **Dependency Injection**: I have made dependency injection with [Stark](https://pub.dev/packages/stark);
+ - **Navigation**: I have used flutter base Navigation with a `Static Navigator Method`, this is a design pattern where the navigation logic is encapsulated within the page class itself, making the code cleaner and the navigation easier to manage.
+  <img width="647" alt="Captura de Tela 2024-03-14 às 17 44 54" src="https://github.com/diefferson/apod/assets/13908165/a90d9ecc-7641-46f9-8a9e-e888f381a5ce">
+
+ - **Error Handling**: Implemented the UseCase pattern,  the UseCase is responsible for handling any error and returning an `Eighter` as a response, with the success  orv with a handled exception;
+ - **HTTP requests**: Made with [Dio](https://pub.dev/packages/dio);
+ - **Cache**: Used [dio_cache_interceptor](https://pub.dev/packages/dio_cache_interceptor) for requests and [cached_network_image](https://pub.dev/packages/cached_network_image) for images.
 
 ## Screenshots and video
-
+`
 <img src="https://github.com/diefferson/apod/assets/13908165/830c9ba2-c376-40e8-9876-fbfe49ed79b2" width=200/>
 <img src="https://github.com/diefferson/apod/assets/13908165/24296a49-c659-4c03-8d05-bc84f8929dff" width=200/>
 
