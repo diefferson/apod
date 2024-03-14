@@ -7,4 +7,3 @@ analyzer:
 
 linter:
   rules:
-    asset_directory_does_not_exist: false

@@ -1,4 +1,4 @@
-name: PR Analysis
+name: Build
 
 on:
   push
