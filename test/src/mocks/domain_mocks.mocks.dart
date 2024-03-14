@@ -332,6 +332,15 @@ class MockErrorService extends _i1.Mock implements _i7.ErrorService {
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [LoadingService].
@@ -358,6 +367,15 @@ class MockLoadingService extends _i1.Mock implements _i8.LoadingService {
   void stopLoading() => super.noSuchMethod(
         Invocation.method(
           #stopLoading,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
           [],
         ),
         returnValueForMissingStub: null,
