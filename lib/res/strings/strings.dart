@@ -12,8 +12,16 @@ class Strings {
 
   String get dateFormat => 'yyyy-MM-dd';
 
+  String get details => 'Details';
+
+  String get title => 'Title:';
+
   String formattedDate(DateTime date) {
     return date.toDateString(format: dateFormat);
+  }
+
+  String copyrightOf(String copyright, DateTime date) {
+    return 'Copyright © ${date.year} - $copyright';
   }
 
 }

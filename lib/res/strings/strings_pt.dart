@@ -13,4 +13,12 @@ class StringsPT extends Strings {
 
   @override
   String get showLess => 'menos';
+
+  @override
+  String get details => 'Detalhes';
+
+  @override
+  String get title => 'Título:';
+
+
 }
