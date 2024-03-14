@@ -10,10 +10,13 @@ class GetApodItemsUseCase
 
   @override
   Future<List<ApodModel>> run(GetApodItemsUseCaseParams params) async {
-    return _repository.getApodList(
+    final list = await _repository.getApodList(
       startDate: params.startDate,
       endDate: params.endDate,
     );
+
+     list.sort((a, b) => b.date.compareTo(a.date));
+     return list;
   }
 }
 

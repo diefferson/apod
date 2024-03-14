@@ -58,5 +58,29 @@ void main() {
       expect(result, isA<List<ApodModel>>());
       expect(result.length, equals(3));
     });
+
+    test('GetApodItemsUseCase should return items sorted by date', () async {
+      final repository = MockApodRepository();
+      final items = [
+        ApodModel(date: DateTime(2022, 1, 1)),
+        ApodModel(date: DateTime(2022, 1, 3)),
+        ApodModel(date: DateTime(2022, 1, 2)),
+      ];
+      when(repository.getApodList(
+        startDate: anyNamed('startDate'),
+        endDate: anyNamed('endDate'),
+      )).thenAnswer((_) async => items);
+
+      final useCase = GetApodItemsUseCase(repository);
+
+      final result = await useCase.run(GetApodItemsUseCaseParams(
+        startDate: DateTime(2022, 1, 1),
+        endDate: DateTime(2022, 1, 3),
+      ));
+
+      for (var i = 0; i < result.length - 1; i++) {
+        expect(true, result[i].date.isAfter(result[i + 1].date));
+      }
+    });
   });
 }
