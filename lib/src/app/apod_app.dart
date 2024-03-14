@@ -1,7 +1,7 @@
 import 'package:apod/res/app_colors.dart';
 import 'package:apod/res/app_strings.dart';
 import 'package:apod/res/app_theme.dart';
-import 'package:apod/src/presentation/pages/home_page.dart';
+import 'package:apod/src/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class ApodApp extends StatelessWidget {

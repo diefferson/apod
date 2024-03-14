@@ -9,10 +9,12 @@ class ApodScaffold extends StatefulWidget {
     super.key,
     required this.body,
     this.title,
+    this.onRefresh,
   });
 
   final Widget body;
   final String? title;
+  final RefreshCallback? onRefresh;
 
   @override
   State<ApodScaffold> createState() => _ApodScaffoldState();
@@ -92,29 +94,32 @@ class _ApodScaffoldState extends State<ApodScaffold> {
       appBar: widget.title != null
           ? AppBar(
               title: Text(widget.title ?? ''),
+              backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+              elevation: 0,
             )
           : null,
-      body: widget.body,
+      body: RefreshIndicator(
+        onRefresh: widget.onRefresh ?? () async {},
+        child: widget.body,
+      ),
     );
   }
 
   Widget _buildLoading(AsyncSnapshot<bool> snapshotLoading) {
     return Visibility(
-        visible: snapshotLoading.hasData && (snapshotLoading.data ?? false),
-        child:
-            // StreamBuilder<double?>(
-            //   stream: _contentHeight,
-            //   builder: (context, snapshot) {
-            //     return
-            Container(
-          // height: snapshot.data ?? 0,
-          color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
-          alignment: Alignment.center,
-          child: const CircularProgressIndicator(),
-        )
-        // ;
-        //     },
-        //   ),
-        );
+      visible: snapshotLoading.hasData && (snapshotLoading.data ?? false),
+      child: StreamBuilder<double?>(
+        stream: _contentHeight,
+        builder: (context, snapshot) {
+          return Container(
+            height: snapshot.data ?? 0,
+            color:
+                Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
   }
 }
