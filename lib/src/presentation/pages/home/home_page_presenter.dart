@@ -35,7 +35,7 @@ class HomePagePresenter extends BasePresenter {
       _endDate = DateTime.now();
       _items.add([]);
     }else{
-      _endDate = _endDate..subtract(const Duration(days: _pageSize+1));
+      _endDate = _endDate.subtract(const Duration(days: _pageSize+1));
     }
     await _apodItemsUseCase.execute(
       withError: true,
