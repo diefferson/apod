@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:apod/src/presentation/pages/home/home_page_presenter.dart';
 
-import '../../mocks/domain_mocks.mocks.dart';
+import '../../../mocks/domain_mocks.mocks.dart';
 
 void main() {
   group('HomePagePresenter', () {
