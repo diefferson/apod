@@ -1,8 +1,7 @@
 name: PR Analysis
 
 on:
-  workflow_dispatch:
-  issue_comment:
+  push
 
 jobs:
   analyze:
