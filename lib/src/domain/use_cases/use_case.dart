@@ -4,6 +4,7 @@ import 'package:apod/src/domain/exception/apod_exception.dart';
 import 'package:apod/src/domain/exception/error_handler.dart';
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stark/stark.dart';
 
@@ -12,23 +13,20 @@ abstract class UseCase<Type, Params> {
   @protected
   Future<Type> run(Params params);
 
-  Function(Type) _onSuccess = (_) {};
-  Function(ApodException) _onError = (_) {};
   final ErrorHandler _errorHandler = Stark.get();
   final ErrorService _errorService = Stark.get();
   final LoadingService _loadingService = Stark.get();
 
-  UseCase<Type, Params> execute({
+  Future<Either<ApodException, Type>> execute({
     Params? params,
     bool withLoading = false,
     bool withError = false,
-  }) {
-    _tryExecute(
-      params ?? None() as Params,
+  }) async {
+    return _tryExecute(
+      params ?? EmptyParams() as Params,
       withLoading: withLoading,
       withError: withError,
     );
-    return this;
   }
 
   @protected
@@ -36,39 +34,7 @@ abstract class UseCase<Type, Params> {
     return exception;
   }
 
-  UseCase<Type, Params> onError(Function(ApodException) action) {
-    _onError = action;
-    return this;
-  }
-
-  UseCase<Type, Params> onSuccess(Function(Type) action) {
-    _onSuccess = action;
-    return this;
-  }
-
-  Future<Type> asFuture({
-    Type Function(ApodException)? errorParser,
-  }) {
-    final Completer<Type> completer = Completer();
-    onSuccess((data) {
-      completer.complete(data);
-    }).onError((e) {
-      if (errorParser != null) {
-        completer.complete(errorParser(e));
-      } else {
-        completer.completeError(e);
-      }
-    });
-    return completer.future;
-  }
-
-  Stream<Type> asStream({
-    Type Function(ApodException)? errorParser,
-  }) {
-    return Stream.fromFuture(asFuture(errorParser: errorParser));
-  }
-
-  Future _tryExecute(
+  Future<Either<ApodException, Type>> _tryExecute(
     Params params, {
     bool withLoading = false,
     bool withError = false,
@@ -82,7 +48,7 @@ abstract class UseCase<Type, Params> {
         _loadingService.stopLoading();
       }
 
-      _onSuccess(result);
+      return Right(result);
     } on Exception catch (e) {
       if (withLoading) {
         _loadingService.stopLoading();
@@ -93,7 +59,7 @@ abstract class UseCase<Type, Params> {
         _errorService.addError(error);
       }
 
-      _onError(error);
+      return Left(error);
     } catch (e) {
       if (withLoading) {
         _loadingService.stopLoading();
@@ -104,9 +70,21 @@ abstract class UseCase<Type, Params> {
         _errorService.addError(error);
       }
 
-      _onError(error);
+      return Left(error);
     }
   }
 }
 
-class None {}
+extension EitherExtensions<Type> on Either<ApodException, Type> {
+  Either<ApodException,Type> onError(Function(ApodException) action) {
+    fold(action, (r) {});
+    return this;
+  }
+
+  Either<ApodException,Type> onSuccess(Function(Type) action) {
+    fold((l){}, action);
+    return this;
+  }
+}
+
+class EmptyParams {}

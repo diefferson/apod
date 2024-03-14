@@ -1,24 +1,25 @@
 import 'package:apod/src/domain/exception/error_handler.dart';
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
-import 'package:apod/src/domain/use_cases/use_case.dart';
-import 'package:apod/src/domain/exception/apod_exception.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:apod/src/domain/exception/apod_exception.dart';
+import 'package:apod/src/domain/use_cases/use_case.dart';
 import 'package:stark/stark.dart';
 
 import '../../mocks/domain_mocks.mocks.dart';
 
-class TestUseCase extends UseCase<int, None> {
+class TestUseCase extends UseCase<int, EmptyParams> {
   @override
-  Future<int> run(None params) async {
+  Future<int> run(EmptyParams params) async {
     return 1;
   }
 }
 
-class ErrorUseCase extends UseCase<int, None> {
+class ErrorUseCase extends UseCase<int, EmptyParams> {
   @override
-  Future<int> run(None params) {
+  Future<int> run(EmptyParams params) {
     throw UnexpectedException();
   }
 }
@@ -44,35 +45,28 @@ void main() {
       when(mockErrorHandler.handle(any)).thenReturn(UnexpectedException());
     });
 
-    test(
-        'should create UseCase with default values when no arguments are provided',
-        () {
+    test('execute with success', () async {
       final useCase = TestUseCase();
-
-      expect(useCase, isNotNull);
-    });
-
-    test('should execute UseCase successfully when run is called', () async {
-      final useCase = TestUseCase();
-
-      final result = await useCase.execute().asFuture();
+      final result = await useCase.execute();
 
       verifyNever(mockErrorHandler.handle(any));
-      expect(result, 1);
+      expect(result, const Right(1));
     });
 
-    test('should handle error when run throws an exception', () async {
+    test('execute with error', () async {
       final useCase = ErrorUseCase();
-
-      useCase.execute();
+      final exception = ApodException();
+      when(mockErrorHandler.handle(any)).thenReturn(exception);
+      final result = await useCase.execute();
 
       verify(mockErrorHandler.handle(any)).called(1);
+      expect(result, Left(exception));
     });
 
-    test('should call error service when withError is tru', () async {
+    test('should call error service when withError is true', () async {
       final useCase = ErrorUseCase();
 
-      useCase.execute(
+      await useCase.execute(
         withError: true,
       );
 
@@ -83,12 +77,57 @@ void main() {
     test('should call LoadingService when withLoading is true', () async {
       final useCase = TestUseCase();
 
-      final result = await useCase.execute(withLoading: true).asFuture();
+      await useCase.execute(withLoading: true);
 
       verify(mockLoadingService.startLoading()).called(1);
       verifyNever(mockErrorHandler.handle(any));
-      expect(result, 1);
       verify(mockLoadingService.stopLoading()).called(1);
+    });
+  });
+
+  group('EitherExtensions', () {
+    test('onError should call action when Left', () {
+      var isCalled = false;
+      final either = Left<ApodException, int>(ApodException());
+
+      either.onError((error) {
+        isCalled = true;
+      });
+
+      expect(isCalled, isTrue);
+    });
+
+    test('onError should not call action when Right', () {
+      var isCalled = false;
+      const either = Right<ApodException, int>(1);
+
+      either.onError((error) {
+        isCalled = true;
+      });
+
+      expect(isCalled, isFalse);
+    });
+
+    test('onSuccess should call action when Right', () {
+      var isCalled = false;
+      const either = Right<ApodException, int>(1);
+
+      either.onSuccess((result) {
+        isCalled = true;
+      });
+
+      expect(isCalled, isTrue);
+    });
+
+    test('onSuccess should not call action when Left', () {
+      var isCalled = false;
+      final either = Left<ApodException, int>(ApodException());
+
+      either.onSuccess((result) {
+        isCalled = true;
+      });
+
+      expect(isCalled, isFalse);
     });
   });
 }

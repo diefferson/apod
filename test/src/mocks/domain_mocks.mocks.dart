@@ -6,12 +6,15 @@
 import 'dart:async' as _i2;
 
 import 'package:apod/src/domain/exception/apod_exception.dart' as _i4;
-import 'package:apod/src/domain/exception/error_handler.dart' as _i6;
-import 'package:apod/src/domain/services/error_service.dart' as _i7;
-import 'package:apod/src/domain/services/loading_service.dart' as _i8;
-import 'package:apod/src/domain/use_cases/use_case.dart' as _i3;
+import 'package:apod/src/domain/exception/error_handler.dart' as _i7;
+import 'package:apod/src/domain/model/apod_model.dart' as _i11;
+import 'package:apod/src/domain/services/error_service.dart' as _i8;
+import 'package:apod/src/domain/services/loading_service.dart' as _i9;
+import 'package:apod/src/domain/use_cases/get_apod_items_use_case.dart' as _i10;
+import 'package:apod/src/domain/use_cases/use_case.dart' as _i5;
+import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i5;
+import 'package:mockito/src/dummies.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -36,9 +39,8 @@ class _FakeFuture_0<T> extends _i1.SmartFake implements _i2.Future<T> {
         );
 }
 
-class _FakeUseCase_1<Type1, Params1> extends _i1.SmartFake
-    implements _i3.UseCase<Type1, Params1> {
-  _FakeUseCase_1(
+class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
+  _FakeEither_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -61,15 +63,15 @@ class _FakeApodException_2 extends _i1.SmartFake implements _i4.ApodException {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUseCase<Type, Params> extends _i1.Mock
-    implements _i3.UseCase<Type, Params> {
+    implements _i5.UseCase<Type, Params> {
   @override
   _i2.Future<Type> run(Params? params) => (super.noSuchMethod(
         Invocation.method(
           #run,
           [params],
         ),
-        returnValue: _i5.ifNotNull(
-              _i5.dummyValueOrNull<Type>(
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<Type>(
                 this,
                 Invocation.method(
                   #run,
@@ -85,8 +87,8 @@ class MockUseCase<Type, Params> extends _i1.Mock
                 [params],
               ),
             ),
-        returnValueForMissingStub: _i5.ifNotNull(
-              _i5.dummyValueOrNull<Type>(
+        returnValueForMissingStub: _i6.ifNotNull(
+              _i6.dummyValueOrNull<Type>(
                 this,
                 Invocation.method(
                   #run,
@@ -105,7 +107,7 @@ class MockUseCase<Type, Params> extends _i1.Mock
       ) as _i2.Future<Type>);
 
   @override
-  _i3.UseCase<Type, Params> execute({
+  _i2.Future<_i3.Either<_i4.ApodException, Type>> execute({
     Params? params,
     bool? withLoading = false,
     bool? withError = false,
@@ -120,7 +122,8 @@ class MockUseCase<Type, Params> extends _i1.Mock
             #withError: withError,
           },
         ),
-        returnValue: _FakeUseCase_1<Type, Params>(
+        returnValue: _i2.Future<_i3.Either<_i4.ApodException, Type>>.value(
+            _FakeEither_1<_i4.ApodException, Type>(
           this,
           Invocation.method(
             #execute,
@@ -131,8 +134,10 @@ class MockUseCase<Type, Params> extends _i1.Mock
               #withError: withError,
             },
           ),
-        ),
-        returnValueForMissingStub: _FakeUseCase_1<Type, Params>(
+        )),
+        returnValueForMissingStub:
+            _i2.Future<_i3.Either<_i4.ApodException, Type>>.value(
+                _FakeEither_1<_i4.ApodException, Type>(
           this,
           Invocation.method(
             #execute,
@@ -143,8 +148,8 @@ class MockUseCase<Type, Params> extends _i1.Mock
               #withError: withError,
             },
           ),
-        ),
-      ) as _i3.UseCase<Type, Params>);
+        )),
+      ) as _i2.Future<_i3.Either<_i4.ApodException, Type>>);
 
   @override
   _i4.ApodException handleError(_i4.ApodException? exception) =>
@@ -168,119 +173,12 @@ class MockUseCase<Type, Params> extends _i1.Mock
           ),
         ),
       ) as _i4.ApodException);
-
-  @override
-  _i3.UseCase<Type, Params> onError(
-          dynamic Function(_i4.ApodException)? action) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #onError,
-          [action],
-        ),
-        returnValue: _FakeUseCase_1<Type, Params>(
-          this,
-          Invocation.method(
-            #onError,
-            [action],
-          ),
-        ),
-        returnValueForMissingStub: _FakeUseCase_1<Type, Params>(
-          this,
-          Invocation.method(
-            #onError,
-            [action],
-          ),
-        ),
-      ) as _i3.UseCase<Type, Params>);
-
-  @override
-  _i3.UseCase<Type, Params> onSuccess(dynamic Function(Type)? action) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #onSuccess,
-          [action],
-        ),
-        returnValue: _FakeUseCase_1<Type, Params>(
-          this,
-          Invocation.method(
-            #onSuccess,
-            [action],
-          ),
-        ),
-        returnValueForMissingStub: _FakeUseCase_1<Type, Params>(
-          this,
-          Invocation.method(
-            #onSuccess,
-            [action],
-          ),
-        ),
-      ) as _i3.UseCase<Type, Params>);
-
-  @override
-  _i2.Future<Type> asFuture({Type Function(_i4.ApodException)? errorParser}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #asFuture,
-          [],
-          {#errorParser: errorParser},
-        ),
-        returnValue: _i5.ifNotNull(
-              _i5.dummyValueOrNull<Type>(
-                this,
-                Invocation.method(
-                  #asFuture,
-                  [],
-                  {#errorParser: errorParser},
-                ),
-              ),
-              (Type v) => _i2.Future<Type>.value(v),
-            ) ??
-            _FakeFuture_0<Type>(
-              this,
-              Invocation.method(
-                #asFuture,
-                [],
-                {#errorParser: errorParser},
-              ),
-            ),
-        returnValueForMissingStub: _i5.ifNotNull(
-              _i5.dummyValueOrNull<Type>(
-                this,
-                Invocation.method(
-                  #asFuture,
-                  [],
-                  {#errorParser: errorParser},
-                ),
-              ),
-              (Type v) => _i2.Future<Type>.value(v),
-            ) ??
-            _FakeFuture_0<Type>(
-              this,
-              Invocation.method(
-                #asFuture,
-                [],
-                {#errorParser: errorParser},
-              ),
-            ),
-      ) as _i2.Future<Type>);
-
-  @override
-  _i2.Stream<Type> asStream({Type Function(_i4.ApodException)? errorParser}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #asStream,
-          [],
-          {#errorParser: errorParser},
-        ),
-        returnValue: _i2.Stream<Type>.empty(),
-        returnValueForMissingStub: _i2.Stream<Type>.empty(),
-      ) as _i2.Stream<Type>);
 }
 
 /// A class which mocks [ErrorHandler].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockErrorHandler extends _i1.Mock implements _i6.ErrorHandler {
+class MockErrorHandler extends _i1.Mock implements _i7.ErrorHandler {
   @override
   _i4.ApodException handle(dynamic exception) => (super.noSuchMethod(
         Invocation.method(
@@ -307,7 +205,7 @@ class MockErrorHandler extends _i1.Mock implements _i6.ErrorHandler {
 /// A class which mocks [ErrorService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockErrorService extends _i1.Mock implements _i7.ErrorService {
+class MockErrorService extends _i1.Mock implements _i8.ErrorService {
   @override
   _i2.Stream<_i4.ApodException?> get error => (super.noSuchMethod(
         Invocation.getter(#error),
@@ -346,7 +244,7 @@ class MockErrorService extends _i1.Mock implements _i7.ErrorService {
 /// A class which mocks [LoadingService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoadingService extends _i1.Mock implements _i8.LoadingService {
+class MockLoadingService extends _i1.Mock implements _i9.LoadingService {
   @override
   _i2.Stream<bool> get loading => (super.noSuchMethod(
         Invocation.getter(#loading),
@@ -380,4 +278,92 @@ class MockLoadingService extends _i1.Mock implements _i8.LoadingService {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [GetApodItemsUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetApodItemsUseCase extends _i1.Mock
+    implements _i10.GetApodItemsUseCase {
+  @override
+  _i2.Future<List<_i11.ApodModel>> run(
+          _i10.GetApodItemsUseCaseParams? params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #run,
+          [params],
+        ),
+        returnValue: _i2.Future<List<_i11.ApodModel>>.value(<_i11.ApodModel>[]),
+        returnValueForMissingStub:
+            _i2.Future<List<_i11.ApodModel>>.value(<_i11.ApodModel>[]),
+      ) as _i2.Future<List<_i11.ApodModel>>);
+
+  @override
+  _i2.Future<_i3.Either<_i4.ApodException, List<_i11.ApodModel>>> execute({
+    _i10.GetApodItemsUseCaseParams? params,
+    bool? withLoading = false,
+    bool? withError = false,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [],
+          {
+            #params: params,
+            #withLoading: withLoading,
+            #withError: withError,
+          },
+        ),
+        returnValue: _i2
+            .Future<_i3.Either<_i4.ApodException, List<_i11.ApodModel>>>.value(
+            _FakeEither_1<_i4.ApodException, List<_i11.ApodModel>>(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+            {
+              #params: params,
+              #withLoading: withLoading,
+              #withError: withError,
+            },
+          ),
+        )),
+        returnValueForMissingStub: _i2
+            .Future<_i3.Either<_i4.ApodException, List<_i11.ApodModel>>>.value(
+            _FakeEither_1<_i4.ApodException, List<_i11.ApodModel>>(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+            {
+              #params: params,
+              #withLoading: withLoading,
+              #withError: withError,
+            },
+          ),
+        )),
+      ) as _i2.Future<_i3.Either<_i4.ApodException, List<_i11.ApodModel>>>);
+
+  @override
+  _i4.ApodException handleError(_i4.ApodException? exception) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleError,
+          [exception],
+        ),
+        returnValue: _FakeApodException_2(
+          this,
+          Invocation.method(
+            #handleError,
+            [exception],
+          ),
+        ),
+        returnValueForMissingStub: _FakeApodException_2(
+          this,
+          Invocation.method(
+            #handleError,
+            [exception],
+          ),
+        ),
+      ) as _i4.ApodException);
 }
