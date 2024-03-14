@@ -94,7 +94,7 @@ void main() {
           .captured
           .first as GetApodItemsUseCaseParams;
 
-      final expectedEndDate = DateTime.now()..subtract(const Duration(days: 8));
+      final expectedEndDate = DateTime.now().subtract(const Duration(days: 8));
       final expectedStartDate =
           expectedEndDate.subtract(const Duration(days: 7));
 
