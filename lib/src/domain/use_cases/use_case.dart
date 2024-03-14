@@ -9,15 +9,15 @@ import 'package:flutter/foundation.dart';
 import 'package:stark/stark.dart';
 
 /// Abstract class for a UseCase
-abstract class UseCase<Type, Params> {
+abstract class UseCase<T, Params> {
   @protected
-  Future<Type> run(Params params);
+  Future<T> run(Params params);
 
   final ErrorHandler _errorHandler = Stark.get();
   final ErrorService _errorService = Stark.get();
   final LoadingService _loadingService = Stark.get();
 
-  Future<Either<ApodException, Type>> execute({
+  Future<Either<ApodException, T>> execute({
     Params? params,
     bool withLoading = false,
     bool withError = false,
@@ -34,7 +34,7 @@ abstract class UseCase<Type, Params> {
     return exception;
   }
 
-  Future<Either<ApodException, Type>> _tryExecute(
+  Future<Either<ApodException, T>> _tryExecute(
     Params params, {
     bool withLoading = false,
     bool withError = false,
@@ -75,15 +75,24 @@ abstract class UseCase<Type, Params> {
   }
 }
 
-extension EitherExtensions<Type> on Future<Either<ApodException, Type>> {
-  Future<Either<ApodException,Type>> onError(Function(ApodException) action) async {
-    (await this).fold(action, (r) {});
-    return this;
+extension EitherExtensions<T> on Future<Either<ApodException, T>> {
+  Future<Either<ApodException, T>> onError(
+      Function(ApodException) action) async {
+    final result = await this;
+    if (result.isLeft()) {
+      result.fold(action, (r) {});
+    }
+
+    return result;
   }
 
-  Future<Either<ApodException,Type>> onSuccess(Function(Type) action) async {
-    (await this).fold((l){}, action);
-    return this;
+  Future<Either<ApodException, T>> onSuccess(Function(T) action) async {
+    final result = await this;
+    if (result.isRight()) {
+      result.fold((l) {}, action);
+    }
+
+    return result;
   }
 }
 
