@@ -3,6 +3,7 @@ import 'package:apod/src/utils/extensions.dart';
 class ApodModel {
   final DateTime date;
   final String explanation;
+  final String copyright;
   final String hdurl;
   final String mediaType;
   final String serviceVersion;
@@ -12,6 +13,7 @@ class ApodModel {
   ApodModel({
     DateTime? date,
     String? explanation,
+    String? copyright,
     String? hdurl,
     String? mediaType,
     String? serviceVersion,
@@ -19,6 +21,7 @@ class ApodModel {
     String? url,
   })  : date = date ?? DateTime.now(),
         explanation = explanation ?? "",
+        copyright = copyright ?? "",
         hdurl = hdurl ?? "",
         mediaType = mediaType ?? "",
         serviceVersion = serviceVersion ?? "",
@@ -29,6 +32,7 @@ class ApodModel {
     return ApodModel(
       date: json.getDate('date'),
       explanation: json.getString('explanation'),
+      copyright: json.getString('copyright'),
       hdurl: json.getString('hdurl'),
       mediaType: json.getString('media_type'),
       serviceVersion: json.getString('service_version'),
@@ -42,6 +46,7 @@ class ApodModel {
       'date': date.toDateString(),
       'explanation': explanation,
       'hdurl': hdurl,
+      'copyright': copyright,
       'media_type': mediaType,
       'service_version': serviceVersion,
       'title': title,
