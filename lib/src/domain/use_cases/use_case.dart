@@ -75,14 +75,14 @@ abstract class UseCase<Type, Params> {
   }
 }
 
-extension EitherExtensions<Type> on Either<ApodException, Type> {
-  Either<ApodException,Type> onError(Function(ApodException) action) {
-    fold(action, (r) {});
+extension EitherExtensions<Type> on Future<Either<ApodException, Type>> {
+  Future<Either<ApodException,Type>> onError(Function(ApodException) action) async {
+    (await this).fold(action, (r) {});
     return this;
   }
 
-  Either<ApodException,Type> onSuccess(Function(Type) action) {
-    fold((l){}, action);
+  Future<Either<ApodException,Type>> onSuccess(Function(Type) action) async {
+    (await this).fold((l){}, action);
     return this;
   }
 }

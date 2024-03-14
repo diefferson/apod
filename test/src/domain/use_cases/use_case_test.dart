@@ -86,44 +86,44 @@ void main() {
   });
 
   group('EitherExtensions', () {
-    test('onError should call action when Left', () {
+    test('onError should call action when Left', () async{
       var isCalled = false;
-      final either = Left<ApodException, int>(ApodException());
+      final either = Future.value(Left<ApodException, int>(ApodException()));
 
-      either.onError((error) {
+      await either.onError((error) {
         isCalled = true;
       });
 
       expect(isCalled, isTrue);
     });
 
-    test('onError should not call action when Right', () {
+    test('onError should not call action when Right', () async {
       var isCalled = false;
-      const either = Right<ApodException, int>(1);
+      final either = Future.value(const Right<ApodException, int>(1));
 
-      either.onError((error) {
+      await either.onError((error) {
         isCalled = true;
       });
 
       expect(isCalled, isFalse);
     });
 
-    test('onSuccess should call action when Right', () {
+    test('onSuccess should call action when Right', () async {
       var isCalled = false;
-      const either = Right<ApodException, int>(1);
+      final either = Future.value(const Right<ApodException, int>(1));
 
-      either.onSuccess((result) {
+      await either.onSuccess((result) {
         isCalled = true;
       });
 
       expect(isCalled, isTrue);
     });
 
-    test('onSuccess should not call action when Left', () {
+    test('onSuccess should not call action when Left', () async {
       var isCalled = false;
-      final either = Left<ApodException, int>(ApodException());
+      final either = Future.value(Left<ApodException, int>(ApodException()));
 
-      either.onSuccess((result) {
+      await either.onSuccess((result) {
         isCalled = true;
       });
 
