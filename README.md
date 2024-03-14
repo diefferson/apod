@@ -1,5 +1,7 @@
-# apod
 
+[![Build](https://github.com/diefferson/apod/actions/workflows/pull_requests.yml/badge.svg)](https://github.com/diefferson/apod/actions/workflows/pull_requests.yml)
+
+# apod
 NASA Astronomy Picture of the Day retrieval
 
 ## Screenshots and video
