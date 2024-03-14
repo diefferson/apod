@@ -1,5 +1,6 @@
 
 import 'package:apod/src/domain/model/apod_model.dart';
+import 'package:apod/src/utils/extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -51,7 +52,7 @@ void main() {
 
       final json = apod.toJson();
 
-      expect(json['date'], equals(date.toIso8601String()));
+      expect(json['date'], date.toDateString());
       expect(json['explanation'], equals('explanation'));
       expect(json['hdurl'], equals('hdurl'));
       expect(json['media_type'], equals('mediaType'));
@@ -63,7 +64,7 @@ void main() {
     test('should create ApodModel from JSON', () {
       final date = DateTime.now();
       final json = {
-        'date': date.toIso8601String(),
+        'date': date.toDateString(),
         'explanation': 'explanation',
         'hdurl': 'hdurl',
         'media_type': 'mediaType',
@@ -74,7 +75,7 @@ void main() {
 
       final apod = ApodModel.fromJson(json);
 
-      expect(apod.date, equals(date));
+      expect(apod.date.toDateString(), date.toDateString());
       expect(apod.explanation, equals('explanation'));
       expect(apod.hdurl, equals('hdurl'));
       expect(apod.mediaType, equals('mediaType'));

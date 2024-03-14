@@ -1,3 +1,5 @@
+import 'package:apod/src/utils/extensions.dart';
+
 class ApodModel {
   final DateTime date;
   final String explanation;
@@ -25,19 +27,19 @@ class ApodModel {
 
   factory ApodModel.fromJson(Map<String, dynamic> json) {
     return ApodModel(
-      date: DateTime.parse(json['date']),
-      explanation: json['explanation'],
-      hdurl: json['hdurl'],
-      mediaType: json['media_type'],
-      serviceVersion: json['service_version'],
-      title: json['title'],
-      url: json['url'],
+      date: json.getDate('date'),
+      explanation: json.getString('explanation'),
+      hdurl: json.getString('hdurl'),
+      mediaType: json.getString('media_type'),
+      serviceVersion: json.getString('service_version'),
+      title: json.getString('title'),
+      url: json.getString('url'),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'date': date.toIso8601String(),
+      'date': date.toDateString(),
       'explanation': explanation,
       'hdurl': hdurl,
       'media_type': mediaType,
