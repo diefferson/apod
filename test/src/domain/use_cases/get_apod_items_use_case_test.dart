@@ -1,11 +1,11 @@
 import 'package:apod/src/domain/exception/apod_exception.dart';
 import 'package:apod/src/domain/exception/error_handler.dart';
+import 'package:apod/src/domain/model/apod_model.dart';
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
+import 'package:apod/src/domain/use_cases/get_apod_items_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:apod/src/domain/model/apod_model.dart';
-import 'package:apod/src/domain/use_cases/get_apod_items_use_case.dart';
 import 'package:stark/stark.dart';
 
 import '../../mocks/data_mocks.mocks.dart';

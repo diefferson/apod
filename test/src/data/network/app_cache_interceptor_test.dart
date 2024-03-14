@@ -1,8 +1,8 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:apod/src/data/network/app_cache_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:apod/src/data/network/app_cache_interceptor.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 
 import '../../mocks/data_mocks.mocks.dart';
 

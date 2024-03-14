@@ -1,7 +1,7 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:apod/src/data/network/network_error_handler.dart';
 import 'package:apod/src/domain/exception/apod_exception.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

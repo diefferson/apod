@@ -1,7 +1,7 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:apod/src/data/apod_repository.dart';
 import 'package:apod/src/domain/model/apod_model.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 
 import '../mocks/data_mocks.mocks.dart';
 

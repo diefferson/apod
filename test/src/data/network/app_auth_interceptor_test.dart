@@ -1,7 +1,6 @@
+import 'package:apod/src/data/network/app_auth_interceptor.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:dio/dio.dart';
-import 'package:apod/src/data/network/app_auth_interceptor.dart';
 
 import '../../mocks/data_mocks.mocks.dart';
 

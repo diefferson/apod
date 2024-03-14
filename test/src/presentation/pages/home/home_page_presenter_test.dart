@@ -1,10 +1,10 @@
 import 'package:apod/src/domain/model/apod_model.dart';
 import 'package:apod/src/domain/use_cases/get_apod_items_use_case.dart';
+import 'package:apod/src/presentation/pages/home/home_page_presenter.dart';
 import 'package:apod/src/utils/extensions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:apod/src/presentation/pages/home/home_page_presenter.dart';
 
 import '../../../mocks/domain_mocks.mocks.dart';
 

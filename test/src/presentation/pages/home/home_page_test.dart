@@ -1,13 +1,13 @@
 import 'package:apod/src/domain/model/apod_model.dart';
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
-import 'package:apod/src/presentation/widgets/apod_item_list.dart';
-import 'package:apod/src/presentation/widgets/apod_scaffold.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:apod/src/presentation/pages/home/home_page.dart';
 import 'package:apod/src/presentation/pages/home/home_page_presenter.dart';
-import 'package:mockito/mockito.dart';
+import 'package:apod/src/presentation/widgets/apod_item_list.dart';
+import 'package:apod/src/presentation/widgets/apod_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:stark/stark.dart';
 
 import '../../../mocks/domain_mocks.mocks.dart';

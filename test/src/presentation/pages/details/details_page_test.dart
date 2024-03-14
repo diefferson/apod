@@ -1,10 +1,10 @@
+import 'package:apod/src/domain/model/apod_model.dart';
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:apod/src/presentation/pages/details/details_page.dart';
-import 'package:apod/src/domain/model/apod_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:stark/stark.dart';
 
 void main() {

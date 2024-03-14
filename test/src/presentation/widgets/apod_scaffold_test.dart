@@ -1,8 +1,8 @@
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:apod/src/presentation/widgets/apod_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:stark/stark.dart';
 
 void main() {
