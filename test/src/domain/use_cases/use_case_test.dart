@@ -1,5 +1,6 @@
-
 import 'package:apod/src/domain/exception/error_handler.dart';
+import 'package:apod/src/domain/services/error_service.dart';
+import 'package:apod/src/domain/services/loading_service.dart';
 import 'package:apod/src/domain/use_cases/use_case.dart';
 import 'package:apod/src/domain/exception/apod_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,21 +24,29 @@ class ErrorUseCase extends UseCase<int, None> {
 }
 
 void main() {
-
   group('UseCase', () {
-
     final mockErrorHandler = MockErrorHandler();
+    final mockErrorService = MockErrorService();
+    final mockLoadingService = MockLoadingService();
 
     setUp(() {
-      Stark.init([
-        {
-          single<ErrorHandler>((i) => mockErrorHandler),
-        }
-      ]);
+      Stark.clear();
+      Stark.init(
+        [
+          {
+            single<ErrorHandler>((i) => mockErrorHandler),
+            single<ErrorService>((i) => mockErrorService),
+            single<LoadingService>((i) => mockLoadingService),
+          },
+        ],
+        logger: Logger(level: Level.NONE),
+      );
       when(mockErrorHandler.handle(any)).thenReturn(UnexpectedException());
     });
 
-    test('should create UseCase with default values when no arguments are provided', () {
+    test(
+        'should create UseCase with default values when no arguments are provided',
+        () {
       final useCase = TestUseCase();
 
       expect(useCase, isNotNull);
@@ -58,6 +67,28 @@ void main() {
       useCase.execute();
 
       verify(mockErrorHandler.handle(any)).called(1);
+    });
+
+    test('should call error service when withError is tru', () async {
+      final useCase = ErrorUseCase();
+
+      useCase.execute(
+        withError: true,
+      );
+
+      verify(mockErrorHandler.handle(any)).called(1);
+      verify(mockErrorService.addError(any)).called(1);
+    });
+
+    test('should call LoadingService when withLoading is true', () async {
+      final useCase = TestUseCase();
+
+      final result = await useCase.execute(withLoading: true).asFuture();
+
+      verify(mockLoadingService.startLoading()).called(1);
+      verifyNever(mockErrorHandler.handle(any));
+      expect(result, 1);
+      verify(mockLoadingService.stopLoading()).called(1);
     });
   });
 }

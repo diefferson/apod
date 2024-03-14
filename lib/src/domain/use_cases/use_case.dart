@@ -15,6 +15,8 @@ abstract class UseCase<Type, Params> {
   Function(Type) _onSuccess = (_) {};
   Function(ApodException) _onError = (_) {};
   final ErrorHandler _errorHandler = Stark.get();
+  final ErrorService _errorService = Stark.get();
+  final LoadingService _loadingService = Stark.get();
 
   UseCase<Type, Params> execute({
     Params? params,
@@ -73,33 +75,33 @@ abstract class UseCase<Type, Params> {
   }) async {
     try {
       if (withLoading) {
-        LoadingService.showLoading();
+        _loadingService.startLoading();
       }
       final result = await run(params);
       if (withLoading) {
-        LoadingService.dismissLoading();
+        _loadingService.stopLoading();
       }
 
       _onSuccess(result);
     } on Exception catch (e) {
       if (withLoading) {
-        LoadingService.dismissLoading();
+        _loadingService.stopLoading();
       }
 
       final error = handleError(_errorHandler.handle(e));
       if (withError) {
-        ErrorService.showException(error);
+        _errorService.addError(error);
       }
 
       _onError(error);
     } catch (e) {
       if (withLoading) {
-        LoadingService.dismissLoading();
+        _loadingService.stopLoading();
       }
       final error = handleError(_errorHandler.handle(e));
 
       if (withError) {
-        ErrorService.showException(error);
+        _errorService.addError(error);
       }
 
       _onError(error);

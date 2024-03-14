@@ -4,6 +4,8 @@ import 'package:apod/src/data/apod_repository.dart';
 import 'package:apod/src/data/network/dio_client.dart';
 import 'package:apod/src/data/network/network_error_handler.dart';
 import 'package:apod/src/domain/exception/error_handler.dart';
+import 'package:apod/src/domain/services/error_service.dart';
+import 'package:apod/src/domain/services/loading_service.dart';
 import 'package:apod/src/domain/use_cases/get_apod_items_use_case.dart';
 import 'package:stark/stark.dart';
 
@@ -30,6 +32,8 @@ class AppInject {
   };
 
   Set<Bind> domainBinds() => <Bind>{
+    single((i) => ErrorService()),
+    single((i) => LoadingService()),
     factory((i) => GetApodItemsUseCase(i.get())),
   };
 

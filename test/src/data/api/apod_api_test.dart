@@ -1,3 +1,4 @@
+import 'package:apod/src/utils/extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dio/dio.dart';
@@ -17,8 +18,8 @@ void main() {
       when(dio.get(
         '/planetary/apod',
         queryParameters: {
-          'start_date': startDate.toIso8601String(),
-          'end_date': endDate.toIso8601String(),
+          'start_date': '2022-01-01',
+          'end_date': '2022-01-10',
           'thumbs': true,
         },
       )).thenAnswer((_) async => Response(
@@ -40,8 +41,8 @@ void main() {
       verify(dio.get(
         '/planetary/apod',
         queryParameters: {
-          'start_date': startDate.toIso8601String(),
-          'end_date': endDate.toIso8601String(),
+          'start_date': '2022-01-01',
+          'end_date': '2022-01-10',
           'thumbs': true,
         },
       )).called(1);
