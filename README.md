@@ -4,6 +4,20 @@
 # apod
 NASA Astronomy Picture of the Day retrieval
 
+## Features  
+ - Two app Flavors with different settings
+ - Light and Dark mode
+ - English and Portuguese strings
+ - Infinity scroll list with automatic pagination
+ - Details screen with APOD details
+ - Caching data to work offline
+
+## Architecture and Libraries
+ - Project architecture: This project was made with a `Clean Architecture` using some layers to divide the project by responsibilities;
+ - State management: For the state management I used the BLOC concept but with an MVP architecture;
+ - Dependency Injection: I have made dependency inject with [Stark](https://pub.dev/stark);
+ - Navigation: I have used flutter base Navigation with a `Static Navigator Method`, this is a design pattern where the navigation logic is encapsulated within the page class itself, making the code cleaner and the navigation easier to manage.
+
 ## Screenshots and video
 
 <img src="https://github.com/diefferson/apod/assets/13908165/830c9ba2-c376-40e8-9876-fbfe49ed79b2" width=200/>
