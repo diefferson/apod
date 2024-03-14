@@ -14,7 +14,8 @@ void main() {
     copyright: 'Test copyright',
   );
 
-  testWidgets('ApodItemList displays the correct data', (WidgetTester tester) async {
+  testWidgets('ApodItemList displays the correct data',
+      (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: ApodItemList(
         item: testApod,
@@ -26,7 +27,8 @@ void main() {
     expect(find.text('Test explanation'), findsOneWidget);
   });
 
-  testWidgets('ApodItemList calls onTap when tapped', (WidgetTester tester) async {
+  testWidgets('ApodItemList calls onTap when tapped',
+      (WidgetTester tester) async {
     var tapped = false;
 
     await tester.pumpWidget(MaterialApp(
@@ -44,7 +46,8 @@ void main() {
     expect(tapped, isTrue);
   });
 
-  testWidgets('ApodItemList displays the correct images', (WidgetTester tester) async {
+  testWidgets('ApodItemList displays the correct images',
+      (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: ApodItemList(
         item: testApod,
@@ -52,7 +55,8 @@ void main() {
       ),
     ));
 
-    final imageWidgets = tester.widgetList<CachedNetworkImage>(find.byType(CachedNetworkImage));
+    final imageWidgets =
+        tester.widgetList<CachedNetworkImage>(find.byType(CachedNetworkImage));
     expect(imageWidgets.first.imageUrl, 'https://test.com/url');
     expect(imageWidgets.last.imageUrl, 'https://test.com/hdurl');
   });

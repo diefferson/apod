@@ -86,7 +86,7 @@ void main() {
   });
 
   group('EitherExtensions', () {
-    test('onError should call action when Left', () async{
+    test('onError should call action when Left', () async {
       var isCalled = false;
       final either = Future.value(Left<ApodException, int>(ApodException()));
 

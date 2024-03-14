@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:apod/src/data/network/network_error_handler.dart';
@@ -7,13 +6,16 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('NetworkErrorHandler', () {
-    test('should create NetworkErrorHandler with default values when no arguments are provided', () {
+    test(
+        'should create NetworkErrorHandler with default values when no arguments are provided',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
 
       expect(networkErrorHandler, isNotNull);
     });
 
-    test('should handle ApodException when handle is called with ApodException', () {
+    test('should handle ApodException when handle is called with ApodException',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
       final exception = ApodException(errorCode: '0', message: 'Test error');
 
@@ -24,7 +26,8 @@ void main() {
       expect(result.message, equals('Test error'));
     });
 
-    test('should handle DioException when handle is called with DioException', () {
+    test('should handle DioException when handle is called with DioException',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
       final exception = DioException(
         requestOptions: RequestOptions(path: 'test'),
@@ -36,7 +39,9 @@ void main() {
       expect(result, isA<UnexpectedException>());
     });
 
-    test('should handle PlatformException when handle is called with DioException containing PlatformException', () {
+    test(
+        'should handle PlatformException when handle is called with DioException containing PlatformException',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
       final exception = DioException(
         requestOptions: RequestOptions(path: 'test'),
@@ -48,8 +53,9 @@ void main() {
       expect(result, isA<UnexpectedException>());
     });
 
-
-    test('should handle UnauthorizedException when handle is called with DioException containing 401 status code', () {
+    test(
+        'should handle UnauthorizedException when handle is called with DioException containing 401 status code',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
       final exception = DioException(
         requestOptions: RequestOptions(path: 'test'),
@@ -67,7 +73,9 @@ void main() {
       expect(result.message, equals('Unauthorized'));
     });
 
-    test('should handle NotFoundException when handle is called with DioException containing 404 status code', () {
+    test(
+        'should handle NotFoundException when handle is called with DioException containing 404 status code',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
       final exception = DioException(
         requestOptions: RequestOptions(path: 'test'),
@@ -85,7 +93,9 @@ void main() {
       expect(result.message, equals('Not Found'));
     });
 
-    test('should handle ServerException when handle is called with DioException containing 500 status code', () {
+    test(
+        'should handle ServerException when handle is called with DioException containing 500 status code',
+        () {
       final networkErrorHandler = NetworkErrorHandler();
       final exception = DioException(
         requestOptions: RequestOptions(path: 'test'),

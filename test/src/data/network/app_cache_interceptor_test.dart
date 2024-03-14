@@ -22,7 +22,6 @@ void main() {
       response.headers = Headers();
       when(requestOptions.extra).thenReturn({});
 
-
       appCacheInterceptor.onResponse(response, handler);
       final headers = response.headers;
 

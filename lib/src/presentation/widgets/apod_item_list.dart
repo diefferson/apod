@@ -41,7 +41,7 @@ class ApodItemList extends StatelessWidget {
       child: Hero(
         tag: item.url,
         child: CachedNetworkImage(
-          imageUrl:item.hdurl,
+          imageUrl: item.hdurl,
           width: double.infinity,
           fit: BoxFit.fitWidth,
         ),
@@ -73,7 +73,7 @@ class ApodItemList extends StatelessWidget {
         children: [
           ClipOval(
             child: CachedNetworkImage(
-              imageUrl:item.url,
+              imageUrl: item.url,
               width: 40, // define the width of the image
               height: 40, // define the height of the image
               fit: BoxFit.cover, // use this to prevent image distortion

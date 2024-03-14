@@ -17,7 +17,6 @@ class StarkConfigurator implements AppConfigurator {
     final environment = await Environment.initialize(env: env);
     final cacheDir = await getTemporaryDirectory();
 
-
     final appInject = AppInject(
       environment: environment,
       cachePath: cacheDir.path,

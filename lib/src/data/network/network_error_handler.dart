@@ -3,7 +3,6 @@ import 'package:apod/src/domain/exception/apod_exception.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 
-
 class NetworkErrorHandler implements ErrorHandler {
   @override
   ApodException handle(exception) {
@@ -33,9 +32,9 @@ class NetworkErrorHandler implements ErrorHandler {
   }
 
   ApodException _handleResponseException(
-      DioException exception,
-      Response response,
-      ) {
+    DioException exception,
+    Response response,
+  ) {
     switch (exception.response?.statusCode) {
       case 301:
       case 302:

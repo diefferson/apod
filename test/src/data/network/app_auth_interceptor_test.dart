@@ -7,7 +7,8 @@ import '../../mocks/data_mocks.mocks.dart';
 
 void main() {
   group('AppAuthInterceptor', () {
-    test('should add apiKey to queryParameters when onRequest is called', () async {
+    test('should add apiKey to queryParameters when onRequest is called',
+        () async {
       final apiKey = 'test_api_key';
       final appAuthInterceptor = AppAuthInterceptor(apiKey);
       final requestOptions = MockRequestOptions();
@@ -15,7 +16,6 @@ void main() {
       var queryParmeters = <String, dynamic>{};
 
       when(requestOptions.queryParameters).thenReturn(queryParmeters);
-
 
       await appAuthInterceptor.onRequest(requestOptions, handler);
 

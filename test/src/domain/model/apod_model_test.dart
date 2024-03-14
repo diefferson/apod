@@ -1,11 +1,12 @@
-
 import 'package:apod/src/domain/model/apod_model.dart';
 import 'package:apod/src/utils/extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('ApodModel', () {
-    test('should create ApodModel with default values when no arguments are provided', () {
+    test(
+        'should create ApodModel with default values when no arguments are provided',
+        () {
       final apod = ApodModel();
 
       expect(apod.date, isNotNull);
@@ -81,7 +82,7 @@ void main() {
 
       final apod = ApodModel.fromJson(json);
 
-      expect(apod.date.toDateString(),equals( date.toDateString()));
+      expect(apod.date.toDateString(), equals(date.toDateString()));
       expect(apod.explanation, equals('explanation'));
       expect(apod.copyright, equals('copyright'));
       expect(apod.hdurl, equals('hdurl'));
@@ -91,7 +92,8 @@ void main() {
       expect(apod.url, equals('url'));
     });
 
-    test('ApodModel should use thumbnail_url for url and hdurl if it exists', () async {
+    test('ApodModel should use thumbnail_url for url and hdurl if it exists',
+        () async {
       final date = DateTime.now();
       final json = {
         'date': date.toDateString(),
@@ -105,7 +107,7 @@ void main() {
       };
       final apod = ApodModel.fromJson(json);
 
-      expect(apod.date.toDateString(),equals( date.toDateString()));
+      expect(apod.date.toDateString(), equals(date.toDateString()));
       expect(apod.explanation, equals('explanation'));
       expect(apod.copyright, equals('copyright'));
       expect(apod.hdurl, equals('thumbnail_url'));
@@ -114,6 +116,5 @@ void main() {
       expect(apod.title, equals('title'));
       expect(apod.url, equals('thumbnail_url'));
     });
-
   });
 }

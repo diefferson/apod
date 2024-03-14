@@ -7,7 +7,6 @@ import 'package:stark/stark.dart';
 
 void main() {
   group('ApodScaffold', () {
-
     setUp(() {
       Stark.clear();
       Stark.init(
@@ -21,7 +20,8 @@ void main() {
       );
     });
 
-    testWidgets('ApodScaffold widget test title should be displayed', (WidgetTester tester) async {
+    testWidgets('ApodScaffold widget test title should be displayed',
+        (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(
         home: ApodScaffold(
           body: Container(),
@@ -36,8 +36,8 @@ void main() {
       expect(find.byType(Container), findsOneWidget);
     });
 
-    testWidgets('ApodScaffold widget test error snackbar', (WidgetTester tester) async {
-
+    testWidgets('ApodScaffold widget test error snackbar',
+        (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(
         home: ApodScaffold(
           body: Container(),
@@ -45,14 +45,15 @@ void main() {
       ));
 
       await tester.pumpAndSettle();
-      ErrorService.show(message:  'Test Error');
+      ErrorService.show(message: 'Test Error');
 
       await tester.pumpAndSettle();
 
       expect(find.text('Test Error'), findsOneWidget);
     });
 
-    testWidgets('ApodScaffold widget test loading', (WidgetTester tester) async {
+    testWidgets('ApodScaffold widget test loading',
+        (WidgetTester tester) async {
       LoadingService.showLoading();
 
       await tester.pumpWidget(MaterialApp(

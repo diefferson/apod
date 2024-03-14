@@ -1,4 +1,3 @@
-
 class ApodException implements Exception {
   ApodException({
     this.errorCode = '0',
@@ -14,7 +13,8 @@ class ApodException implements Exception {
 }
 
 final class UnexpectedException extends ApodException {
-  UnexpectedException({super.cause,super.errorCode, super.message, super.title});
+  UnexpectedException(
+      {super.cause, super.errorCode, super.message, super.title});
 }
 
 final class NotFoundException extends ApodException {
@@ -28,6 +28,3 @@ final class UnauthorizedException extends ApodException {
 final class ServerException extends ApodException {
   ServerException({super.errorCode, super.message, super.cause});
 }
-
-
-

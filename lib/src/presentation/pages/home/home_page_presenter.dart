@@ -10,9 +10,10 @@ class HomePagePresenter extends BasePresenter {
   final GetApodItemsUseCase _apodItemsUseCase;
 
   final _items = BehaviorSubject<List<ApodModel>>()..add([]);
+
   Stream<List<ApodModel>> get items => _items.stream;
 
-  static const _pageSize =  7;
+  static const _pageSize = 7;
   DateTime _endDate = DateTime.now();
 
   @override
@@ -22,7 +23,7 @@ class HomePagePresenter extends BasePresenter {
   }
 
   @override
-  Future refresh()async {
+  Future refresh() async {
     _getApodItems(true);
   }
 
@@ -31,22 +32,24 @@ class HomePagePresenter extends BasePresenter {
   }
 
   void _getApodItems(bool refresh) async {
-    if(refresh){
+    if (refresh) {
       _endDate = DateTime.now();
       _items.add([]);
-    }else{
-      _endDate = _endDate.subtract(const Duration(days: _pageSize+1));
+    } else {
+      _endDate = _endDate.subtract(const Duration(days: _pageSize + 1));
     }
-    await _apodItemsUseCase.execute(
+    await _apodItemsUseCase
+        .execute(
       withError: true,
       withLoading: refresh,
       params: GetApodItemsUseCaseParams(
-        endDate:_endDate,
+        endDate: _endDate,
         startDate: _endDate.subtract(
           const Duration(days: _pageSize),
         ),
       ),
-    ).onSuccess((data) {
+    )
+        .onSuccess((data) {
       _items.add(_items.value..addAll(data));
     });
   }

@@ -15,8 +15,8 @@ class GetApodItemsUseCase
       endDate: params.endDate,
     );
 
-     list.sort((a, b) => b.date.compareTo(a.date));
-     return list;
+    list.sort((a, b) => b.date.compareTo(a.date));
+    return list;
   }
 }
 

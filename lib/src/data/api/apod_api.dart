@@ -7,7 +7,10 @@ class ApodApi {
 
   final Dio _dio;
 
-  Future<List<ApodModel>> getApodList({required DateTime startDate,required DateTime endDate}) async {
+  Future<List<ApodModel>> getApodList({
+    required DateTime startDate,
+    required DateTime endDate,
+  }) async {
     final response = await _dio.get(
       '/planetary/apod',
       queryParameters: {

@@ -7,7 +7,6 @@ import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_stor
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 
-
 abstract class DioClient {
   // UUID helper to mark requests
 
@@ -33,12 +32,12 @@ abstract class DioClient {
   }
 
   static BaseOptions _dioOptions(String baseUrl) => BaseOptions(
-    baseUrl: baseUrl,
-    followRedirects: false,
-    receiveDataWhenStatusError: true,
-    connectTimeout: const Duration(seconds: 240),
-    receiveTimeout: const Duration(seconds: 240),
-  );
+        baseUrl: baseUrl,
+        followRedirects: false,
+        receiveDataWhenStatusError: true,
+        connectTimeout: const Duration(seconds: 240),
+        receiveTimeout: const Duration(seconds: 240),
+      );
 
   static CacheOptions getCacheOptions(String cachePath) {
     return CacheOptions(
@@ -54,8 +53,8 @@ abstract class DioClient {
   }
 
   static String getCacheKeyBuilder(RequestOptions request, {String name = ''}) {
-    return const Uuid().v5(Uuid.NAMESPACE_URL,
-        '${request.uri.toString()}/$name');
+    return const Uuid()
+        .v5(Uuid.NAMESPACE_URL, '${request.uri.toString()}/$name');
   }
 
   static Interceptor _getLogInterceptor() {
@@ -71,7 +70,7 @@ abstract class DioClient {
   }
 
   static void _logPrint(dynamic message) {
-    if(kDebugMode){
+    if (kDebugMode) {
       print(message?.toString());
     }
   }

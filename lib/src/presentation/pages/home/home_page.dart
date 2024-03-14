@@ -36,7 +36,7 @@ class _HomePageState extends BaseState<HomePage, HomePagePresenter>
             parent: AlwaysScrollableScrollPhysics(),
           ),
           itemBuilder: (context, index) {
-            if(index == items.length - 1){
+            if (index == items.length - 1) {
               presenter.loadMore();
             }
             return Column(
@@ -53,8 +53,7 @@ class _HomePageState extends BaseState<HomePage, HomePagePresenter>
                     width: 20,
                     height: 20,
                     margin: const EdgeInsets.all(8),
-                    child: const CircularProgressIndicator(
-                    ),
+                    child: const CircularProgressIndicator(),
                   ),
                 ),
               ],

@@ -17,7 +17,6 @@ extension JsonUtils on Map<dynamic, dynamic> {
     return jsonSafeValue(this, key, '');
   }
 
-
   String? getStringNull(String key) {
     return jsonSafeValue<String?>(this, key, null);
   }
@@ -246,9 +245,6 @@ List<T> jsonAsList<T>(
     return [];
   }
 }
-
-
-
 
 DateTime? stringToDate(String value) {
   final dateFormats = [

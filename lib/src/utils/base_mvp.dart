@@ -25,5 +25,3 @@ abstract class BaseState<T extends StatefulWidget, B extends BasePresenter>
     presenter.init();
   }
 }
-
-

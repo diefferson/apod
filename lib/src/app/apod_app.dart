@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class ApodApp extends StatelessWidget {
   const ApodApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

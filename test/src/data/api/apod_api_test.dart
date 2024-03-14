@@ -9,7 +9,9 @@ import '../../mocks/data_mocks.mocks.dart';
 
 void main() {
   group('ApodApi', () {
-    test('should call get with correct path and query parameters when getApodList is called', () async {
+    test(
+        'should call get with correct path and query parameters when getApodList is called',
+        () async {
       final dio = MockDio();
       final apodApi = ApodApi(dio);
       final startDate = DateTime(2022, 01, 01);
@@ -23,20 +25,21 @@ void main() {
           'thumbs': true,
         },
       )).thenAnswer((_) async => Response(
-        data: List.generate(
-          10,
+            data: List.generate(
+              10,
               (index) => {
-            'date': '2022-01-01',
-            'explanation': 'Test explanation',
-            'media_type': 'image',
-            'title': 'Test title',
-            'url': 'https://test.com',
-          },
-        ),
-        requestOptions: RequestOptions(path: '/planetary/apod'),
-      ));
+                'date': '2022-01-01',
+                'explanation': 'Test explanation',
+                'media_type': 'image',
+                'title': 'Test title',
+                'url': 'https://test.com',
+              },
+            ),
+            requestOptions: RequestOptions(path: '/planetary/apod'),
+          ));
 
-      final result = await apodApi.getApodList(startDate: startDate, endDate: endDate);
+      final result =
+          await apodApi.getApodList(startDate: startDate, endDate: endDate);
 
       verify(dio.get(
         '/planetary/apod',

@@ -33,11 +33,11 @@ class ApodModel {
       date: json.getDate('date'),
       explanation: json.getString('explanation'),
       copyright: json.getString('copyright'),
-      hdurl: json.getStringFromKeys(['thumbnail_url','hdurl','url']),
+      hdurl: json.getStringFromKeys(['thumbnail_url', 'hdurl', 'url']),
       mediaType: json.getString('media_type'),
       serviceVersion: json.getString('service_version'),
       title: json.getString('title'),
-      url: json.getStringFromKeys(['thumbnail_url','url']),
+      url: json.getStringFromKeys(['thumbnail_url', 'url']),
     );
   }
 

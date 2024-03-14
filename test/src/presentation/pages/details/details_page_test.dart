@@ -37,9 +37,9 @@ void main() {
       expect(find.text('Title:'), findsOneWidget);
       expect(find.text('test_title'), findsOneWidget);
       expect(find.text('Copyright © 2022 - test_copyright'), findsOneWidget);
-      expect(find.text('Details'), findsNWidgets(2)); // AppBar title and Details title
+      expect(find.text('Details'),
+          findsNWidgets(2)); // AppBar title and Details title
       expect(find.text('test_explanation'), findsOneWidget);
-
 
       final imageWidget = find.byType(CachedNetworkImage);
       expect(imageWidget, findsOneWidget);

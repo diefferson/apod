@@ -1,4 +1,3 @@
-
 import 'package:apod/src/utils/extensions.dart';
 
 class Strings {
@@ -23,5 +22,4 @@ class Strings {
   String copyrightOf(String copyright, DateTime date) {
     return 'Copyright © ${date.year} - $copyright';
   }
-
 }

@@ -1,7 +1,6 @@
 import 'strings.dart';
 
 class StringsPT extends Strings {
-
   @override
   String get locale => 'pt_BR';
 
@@ -19,6 +18,4 @@ class StringsPT extends Strings {
 
   @override
   String get title => 'Título:';
-
-
 }

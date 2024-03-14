@@ -10,9 +10,9 @@ class AppCacheInterceptor extends DioCacheInterceptor {
 
   @override
   void onResponse(
-      Response response,
-      ResponseInterceptorHandler handler,
-      ) async {
+    Response response,
+    ResponseInterceptorHandler handler,
+  ) async {
     final cacheOptions = _getCacheOptions(response.requestOptions);
 
     final headers = response.headers;

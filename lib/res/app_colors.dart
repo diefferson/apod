@@ -5,6 +5,7 @@ import 'colors/app_colors_light.dart';
 
 class AppColors {
   AppColors._();
+
   static AppColorsLight of(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     if (theme.brightness == Brightness.dark) {
