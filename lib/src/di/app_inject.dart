@@ -7,6 +7,7 @@ import 'package:apod/src/domain/exception/error_handler.dart';
 import 'package:apod/src/domain/services/error_service.dart';
 import 'package:apod/src/domain/services/loading_service.dart';
 import 'package:apod/src/domain/use_cases/get_apod_items_use_case.dart';
+import 'package:apod/src/presentation/pages/home_page_presenter.dart';
 import 'package:stark/stark.dart';
 
 class AppInject {
@@ -37,5 +38,7 @@ class AppInject {
     factory((i) => GetApodItemsUseCase(i.get())),
   };
 
-  Set<Bind> presentationBinds() => {};
+  Set<Bind> presentationBinds() => {
+    single((i) => HomePagePresenter(i.get())),
+  };
 }
