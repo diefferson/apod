@@ -1,5 +1,6 @@
 import 'package:apod/res/app_strings.dart';
 import 'package:apod/src/domain/model/apod_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ApodItemList extends StatelessWidget {
@@ -33,8 +34,8 @@ class ApodItemList extends StatelessWidget {
       constraints: const BoxConstraints(
         minHeight: 200,
       ),
-      child: Image.network(
-        item.url,
+      child: CachedNetworkImage(
+        imageUrl:item.url,
         width: double.infinity,
         fit: BoxFit.fitWidth,
       ),
@@ -64,8 +65,8 @@ class ApodItemList extends StatelessWidget {
       child: Row(
         children: [
           ClipOval(
-            child: Image.network(
-              item.url,
+            child: CachedNetworkImage(
+              imageUrl:item.url,
               width: 40, // define the width of the image
               height: 40, // define the height of the image
               fit: BoxFit.cover, // use this to prevent image distortion
